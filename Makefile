@@ -1,4 +1,3 @@
-
 .SILENT: help
 .PHONY: help fmt lint test
 
