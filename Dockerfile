@@ -28,14 +28,14 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-install-project
 
-RUN chown -R ${UID}:${GID} ${UV_PROJECT_ENVIRONMENT}
-
 # Copy the project into the image
 ADD --chown=${UID}:${GID} . ${SOURCE_DIR}
 
 # Sync the project
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen
+
+RUN chown -R ${UID}:${GID} ${UV_PROJECT_ENVIRONMENT}
 
 USER ${UID}:${GID}
 
