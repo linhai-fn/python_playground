@@ -8,9 +8,7 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = [
-    "pydantic>=2.9.2",
-]
+dependencies = ["pydantic>=2.9.2"]
 
 [project.scripts]
 python-playground = "python_playground.main:main"
@@ -35,13 +33,13 @@ addopts = "--cov=. --cov-report=term-missing --cov-report=xml --junit-xml=junit.
 line-length = 120
 output-format = "concise"
 lint.select = [
-    "E", # pycodestyle errors
-    "W", # pycodestyle warnings
-    "F", # Pyflakes
-    "B", # flake8-bugbear
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # Pyflakes
+    "B",   # flake8-bugbear
     "SIM", # flake8-simplify
-    "UP", # pyupgrade
-    #"I", # isort
+    "UP",  # pyupgrade
+    "I",   # isort
 ]
 lint.ignore = [
     "E501", # Line too long
