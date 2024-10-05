@@ -6,6 +6,11 @@ FROM python:3.11-bookworm AS dev
 ARG UID
 ARG GID
 
+# Create a group with GID if the GID doesn't exist
+RUN groupadd --gid ${GID} dev > /dev/null 2>&1 ||:
+# Create a user with the UID and GID
+RUN useradd -m -u ${UID} -g ${GID} -s /bin/bash dev
+
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
