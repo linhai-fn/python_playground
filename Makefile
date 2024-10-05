@@ -4,6 +4,22 @@
 
 uv-run = uv run
 
+UID := $(shell id -u)
+GID := $(shell id -g)
+
+remote.url := $(shell git config --get remote.origin.url)
+ifeq ($(remote.url),)
+    # If no remote URL, get the top-level directory of the Git repository
+    project.dir := $(shell git rev-parse --show-toplevel)
+    # Extract the project name from the directory name
+    project.name := $(notdir $(project.dir))
+else
+    # If remote URL exists, extract the project name from the remote URL
+    project.name := $(shell basename $(remote.url) .git)
+endif
+
+DEV_TAG = $(project.name)-dev
+
 help:
 	echo "Available targets:"
 	cat $(MAKEFILE_LIST) | \
@@ -28,3 +44,9 @@ lint: ## Lint code
 
 test: ## Run tests
 	$(uv-run) pytest
+
+dev: ## Build dev container
+	docker build --build-arg UID=$(UID) --build-arg GID=$(GID) --tag $(DEV_TAG) --target dev .
+
+shell: dev ## Enter dev container
+	docker run --rm -it -v .:/app -w /app $(DEV_TAG) bash
