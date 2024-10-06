@@ -51,5 +51,8 @@ dev: ## Build dev container
 shell: dev ## Enter dev container
 	docker run --rm -it -v .:/app -w /app $(DEV_TAG) bash
 
-docs: ## Build docs
+build-docs: ## Build docs
 	$(uv-run) mkdocs build
+
+deploy-docs: ## Deploy docs
+	$(uv-run) mkdocs gh-deploy
