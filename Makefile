@@ -55,4 +55,4 @@ build-docs: ## Build docs
 	$(uv-run) mkdocs build
 
 deploy-docs: ## Deploy docs
-	$(uv-run) mkdocs gh-deploy
+	$(uv-run) mkdocs gh-deploy --force --no-history
