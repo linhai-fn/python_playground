@@ -1,5 +1,5 @@
 .SILENT: help
-.PHONY: help fmt lint test
+.PHONY: help fmt lint test dev shell docs
 
 uv-run = uv run
 
@@ -50,3 +50,6 @@ dev: ## Build dev container
 
 shell: dev ## Enter dev container
 	docker run --rm -it -v .:/app -w /app $(DEV_TAG) bash
+
+docs: ## Build docs
+	$(uv-run) mkdocs build
