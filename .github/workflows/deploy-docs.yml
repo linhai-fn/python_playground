@@ -40,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: uv sync --only-dev
       - name: Build docs
-        run: make build-docs
+        run: make docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
