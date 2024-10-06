@@ -31,13 +31,14 @@ help:
 
 fmt: ## Format code
 	@echo "Formatting code..."
-	$(uv-run) ruff check --select I --fix
+	$(uv-run) ruff check --fix
 	$(uv-run) ruff format
 	@echo "Formatting Completed!"
 
 lint: ## Lint code
 	@echo "Linting code..."
 	$(uv-run) ruff check
+	$(uv-run) ruff format --check
 	$(uv-run) mypy .
 	@echo "Linting Completed!"
 
