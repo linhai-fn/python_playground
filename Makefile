@@ -37,7 +37,11 @@ fmt: ## Format code
 
 lint: ## Lint code
 	@echo "Linting code..."
-	$(uv-run) ruff check
+	if [ "${CI}" = "true" ]; then \
+		$(uv-run) ruff check --output-format=github; \
+	else \
+		$(uv-run) ruff check; \
+	fi
 	$(uv-run) ruff format --check
 	$(uv-run) mypy .
 	@echo "Linting Completed!"
