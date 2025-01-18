@@ -7,5 +7,6 @@
     ":combinePatchMinorReleases",
     ":timezone(America/Los_Angeles)",
     "schedule:monthly"
-  ]
+  ],
+  "lockFileMaintenance": { "enabled": true }
 }
