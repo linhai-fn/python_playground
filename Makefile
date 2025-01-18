@@ -56,4 +56,4 @@ shell: dev ## Enter dev container
 	docker run --rm -it -v .:/app -w /app $(DEV_TAG) bash
 
 docs: ## Build docs
-	$(uv-run) mkdocs build
+	$(uv-run) --only-group doc mkdocs build
